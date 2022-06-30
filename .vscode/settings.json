@@ -2,6 +2,7 @@
 {
     "[python]": {
         "editor.formatOnSave": true,
+        "editor.formatOnPaste": false,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         }
@@ -10,4 +11,13 @@
         // Match what black does.
         "--max-line-length=88"
     ],
+    
+	"python.linting.flake8Path": "pyflakes",
+	"python.formatting.provider": "black",
+	"python.linting.pydocstyleEnabled": true,
+	"python.linting.mypyEnabled": true,
+	"python.linting.banditEnabled": true,
+	"python.linting.flake8Enabled": true,
+	"python.formatting.blackArgs": ["--line-length", "79"],
+	
 }

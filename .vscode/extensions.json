@@ -13,6 +13,7 @@
         "donjayamanne.python-environment-manager",
         "dongli.python-preview",
         "tushortz.python-extended-snippets",
-        "LittleFoxTeam.vscode-python-test-adapter"
+        "LittleFoxTeam.vscode-python-test-adapter",
+        "mgesbert.python-path"
 	]
 }

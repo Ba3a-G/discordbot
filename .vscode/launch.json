@@ -1,40 +1,34 @@
 {
-    "configurations": [
-      
-      
-      {
-        "name": "Python: Current File (Integrated Terminal)",
-        "type": "python",
-        "request": "launch",
-        "program": "${file}",
-        "console": "integratedTerminal"
-      },
-      {
-        "name": "Python: Current File (External Terminal)",
-        "type": "python",
-        "request": "launch",
-        "program": "${file}",
-        "console": "externalTerminal"
-      },
-      {
-        "name": "Python",
-        "type": "python",
-        "pythonPath":"${config.python.pythonPath}", 
-        "request": "launch",
-        "stopOnEntry": true,
-        "console": "none",
-        "program": "${file}",
-        "cwd": "${workspaceRoot}",
-        "debugOptions": [
-            "WaitOnAbnormalExit",
-            "WaitOnNormalExit",
-            "RedirectOutput"
-        ],
-        "env": {"name":"value"}
-    }
+  "configurations": [
     
-    ]
-
-    // Fix the Python launch.json
-
+    
+    {
+      "name": "Python: Current File (Integrated Terminal)",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Current File (External Terminal)",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "externalTerminal"
+    },
+    {
+      "name": "Python",
+      "type": "python",
+      "request": "launch",
+      "stopOnEntry": true,
+      "console": "integratedTerminal",
+      "program": "${file}",
+      "cwd": "${workspaceRoot}",
+      "env": {"name":"value"}
   }
+  
+  ]
+
+  // Fix the Python launch.json
+
+}

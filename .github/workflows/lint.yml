@@ -1,4 +1,12 @@
-on: pull_request
+name: Linting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   example:

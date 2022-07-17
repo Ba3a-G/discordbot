@@ -9,22 +9,26 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
+
 # Setup bot and its intents.
 intents = discord.Intents.default()
 intents.members = True
 
-bot = commands.Bot(intents=intents)
+class DiscordBot(commands.Bot):
+    def __init__(self):
+        super.__init__(
+            intents=intents
+        )
+
+    async def on_ready(self):
+        print(f'{self.user.name} has connected to Discord!')
+
+    async def on_member_join(self, member: discord.Member):
+        print(f'{member} has joined the server.')
+        await member.send(f'Welcome, {member.mention}!')
 
 
-# Event handlers.
-@bot.event
-async def on_ready():
-    print(f'{bot.user.name} has connected to Discord!')
-
-@bot.event
-async def on_member_join(member):
-    print(f"{member} has joined the server.")
-    await member.send(f"Welcome! {member.mention}")
+bot = DiscordBot()
 
 
 # Load cogs / extensions.

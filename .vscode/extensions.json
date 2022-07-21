@@ -6,14 +6,13 @@
         "ms-toolsai.jupyter",
         "ms-python.vscode-pylance",
         "VisualStudioExptTeam.vscodeintellicode",
-        "tht13.python",
         "magicstack.MagicPython",
         "donjayamanne.python-extension-pack",
         "KevinRose.vsc-python-indent",
         "donjayamanne.python-environment-manager",
-        "dongli.python-preview",
         "tushortz.python-extended-snippets",
         "LittleFoxTeam.vscode-python-test-adapter",
-        "mgesbert.python-path"
+        "mgesbert.python-path",
+        "himanoa.python-autopep8"
 	]
 }

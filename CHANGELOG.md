@@ -11,15 +11,22 @@ See Unlreased
 
 ## [0.0.1] - {{date}}
 
-- Initial Commit 
+- Initial Commit
 
 ### Added
+
+Added Visual Studio and Visual Studio Code configurations for Python
+Added Folders for Visual Studio
+Added Python project file for Visual Studio
+Added settings file for Visual Studio Code
 
 ### Changed
 
 ### Removed
 
 ### Fixed
+
+Removed Deprecated Extensions for Visual Studio Code
 
 [Unreleased]: (link)
 

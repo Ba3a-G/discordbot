@@ -18,7 +18,7 @@ intents.members = True
 class DiscordBot(commands.Bot):
     def __init__(self):
         super.__init__(
-            command_prefix=commands.when_mentioned,
+            command_prefix='!',
             intents=intents
         )
 

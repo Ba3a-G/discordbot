@@ -15,6 +15,7 @@ TOKEN = os.getenv('TOKEN')
 intents = disnake.Intents.default()
 intents.members = True
 
+
 class DiscordBot(commands.Bot):
     def __init__(self):
         super.__init__(
@@ -35,8 +36,8 @@ bot = DiscordBot()
 
 # Load cogs / extensions.
 for f in os.listdir("./cogs"):
-	if f.endswith(".py"):
-		bot.load_extension("cogs." + f[:-3])
+    if f.endswith(".py"):
+        bot.load_extension("cogs." + f[:-3])
 
 
 # Run the bot.

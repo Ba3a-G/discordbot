@@ -21,7 +21,12 @@ class General(commands.Cog):
         name='greet',
         description='Greets a member.',
         options=[
-            Option('member', 'Mention the server member you wish to greet.', OptionType.user, required=True)
+            Option(
+                'member',
+                'Mention the server member you wish to greet.',
+                OptionType.user,
+                required=True
+            )
         ]
     )
     async def _greet(self, inter: disnake.CommandInteraction, member: disnake.Member):

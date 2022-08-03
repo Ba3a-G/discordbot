@@ -6,12 +6,7 @@
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         }
-    },
-    "python.linting.flake8Args": [
-        // Match what black does.
-        "--max-line-length=88"
-    ],
-    
+    },    
 	"python.linting.flake8Path": "pyflakes",
 	"python.formatting.provider": "black",
 	"python.linting.pydocstyleEnabled": true,

@@ -1,18 +1,4 @@
-// Place your settings in this file to overwrite default and user settings.
 {
-    "[python]": {
-        "editor.formatOnSave": true,
-        "editor.formatOnPaste": false,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        }
-    },    
-	"python.linting.flake8Path": "pyflakes",
-	"python.formatting.provider": "black",
-	"python.linting.pydocstyleEnabled": true,
-	"python.linting.mypyEnabled": true,
-	"python.linting.banditEnabled": true,
-	"python.linting.flake8Enabled": true,
-	"python.formatting.blackArgs": ["--line-length", "79"],
-	
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
 }

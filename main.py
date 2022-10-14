@@ -13,13 +13,13 @@ TOKEN = os.getenv('TOKEN')
 
 
 # Setup bot and its intents.
-intents = disnake.Intents.default()
+intents = disnake.Intents.all()
 intents.members = True
 
 
 class DiscordBot(commands.Bot):
     def __init__(self):
-        super.__init__(
+        super().__init__(
             command_prefix='!',
             intents=intents
         )

@@ -5,6 +5,7 @@ import os
 import disnake
 from disnake.ext import commands
 from dotenv import load_dotenv
+from keep_alive import keep_alive
 
 # Load environment variables.
 load_dotenv()
@@ -42,4 +43,5 @@ for f in os.listdir("./cogs"):
 
 # Run the bot.
 if __name__ == '__main__':
+    keep_alive()
     bot.run(TOKEN)

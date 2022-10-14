@@ -34,14 +34,14 @@ class General(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    async def cog_before_slash_command_invoke(self, inter: disnake.CommandInteraction) -> None:
+    async def cog_before_slash_command_invoke(self, inter: disnake.CommandInter) -> None:
         await inter.response.defer()
 
     @commands.slash_command(
         name='help',
         description='Get to know me!'
     )
-    async def _help(self, inter: disnake.CommandInteraction) -> None:
+    async def _help(self, inter: disnake.CommandInter) -> None:
         embed = disnake.Embed(
             title='Hi there! This is Tao!',
             description="""
@@ -61,14 +61,14 @@ class General(commands.Cog):
         options=[
             Option(
                 'member',
-                'Mention the server member you wish to greet.',
+                'The server member you wish to greet.',
                 OptionType.user,
                 required=True
             )
         ],
         dm_permission=False
     )
-    async def _greet(self, inter: disnake.CommandInteraction, member: disnake.Member):
+    async def _greet(self, inter: disnake.CommandInter, member: disnake.Member):
         await inter.send(f'Greetings, {member.mention}!')
 
 

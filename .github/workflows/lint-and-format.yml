@@ -1,4 +1,4 @@
-name: Formatting
+name: Linting
 
 on:
   push:
@@ -9,9 +9,25 @@ on:
       - main
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: flake8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Lint
+        uses: py-actions/flake8@v2
+
   format:
     name: black
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout

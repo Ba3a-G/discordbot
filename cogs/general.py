@@ -71,6 +71,43 @@ class General(commands.Cog):
     async def _greet(self, inter: disnake.CommandInter, member: disnake.Member):
         await inter.send(f'Greetings, {member.mention}!')
 
+    @commands.slash_command(
+        name='info',
+        description='Get information about the server.',
+        dm_permission=False
+    )
+    async def _info(self, inter: disnake.CommandInter):
+        embed = disnake.Embed(
+            title='Server Information',
+        ).add_field(
+            name='Server Name',
+            value=inter.guild.name,
+            inline=True
+        ).add_field(
+            name='Server ID',
+            value=inter.guild.id,
+            inline=True
+        ).add_field(
+            name='Owner',
+            value=inter.guild.owner.mention,
+            inline=True
+        ).add_field(
+            name='Server Created On',
+            value=inter.guild.created_at.strftime('%m/%d/%Y'),
+            inline=True
+        ).add_field(
+            name='Member Count',
+            value=inter.guild.member_count,
+            inline=True
+        ).add_field(
+            name='Boost Count',
+            value=inter.guild.premium_subscription_count,
+            inline=True
+        ).set_image(
+            url=inter.guild.icon
+        )
+        await inter.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(General(bot))

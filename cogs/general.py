@@ -69,11 +69,11 @@ class General(commands.Cog):
         await inter.send(f"Greetings, {member.mention}!")
 
     @commands.slash_command(
-        name="info",
+        name="serverinfo",
         description="Get information about the server.",
         dm_permission=False,
     )
-    async def _info(self, inter: disnake.CommandInter):
+    async def _serverinfo(self, inter: disnake.CommandInter):
         embed = (
             disnake.Embed(
                 title="Server Information",

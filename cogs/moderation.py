@@ -85,12 +85,8 @@ class Moderation(commands.Cog):
         ),
         dm_permission=False
     )
-    async def _kick(
-        self,
-        inter: disnake.CommandInter,
-        member: disnake.Member,
-        reason: str = 'No reason provided.'
-    ) -> None:
+    async def _kick(self, inter: disnake.CommandInter, member: disnake.Member,
+                    reason: str = 'No reason provided.') -> None:
         await inter.guild.kick(member, reason=reason)
         await inter.send(f'Kicked {member.name}{member.discriminator}!')
 

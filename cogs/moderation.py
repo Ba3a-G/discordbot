@@ -41,6 +41,32 @@ class Moderation(commands.Cog):
         await inter.send(f'Banned {member.name}{member.discriminator}!')
 
     @commands.slash_command(
+        name='sofban',
+        description='Softans people to wipe their messages.',
+        options=[
+            Option(
+                'member',
+                'The server member you want to ban.',
+                OptionType.user,
+                required=True
+            ),
+            Option(
+                'reason',
+                'Reason for softbanning the person.',
+                OptionType.string
+            )
+        ],
+        default_member_permissions=disnake.Permissions(
+            ban_members=True
+        ),
+        dm_permission=False
+    )
+    async def _softban(self, inter: disnake.CommandInter, member: disnake.Member,
+                       reason: str | None = None) -> None:
+        await inter.guild.ban(member, reason=reason, delete_message_days=7)
+        await inter.send(f'Softbanned {member.name}{member.discriminator}!')
+
+    @commands.slash_command(
         name='unban',
         description='Unbans a member from the server.',
         options=[

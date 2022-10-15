@@ -45,6 +45,28 @@ class Moderation(commands.Cog):
         invite = await inter.channel.create_invite(max_age=0, max_uses=0)
         await inter.send(f'Here\'s an invite link to this server: https://discord.gg/{invite.code}')
 
+    @commands.slash_command(
+        name='listinvites',
+        description='List all invites for this server.',
+        dm_permission=False
+    )
+    async def _listinvites(self, inter: disnake.CommandInter) -> None:
+        invites = await inter.guild.invites()
+        embed = disnake.Embed(title='Invites')
+        if invites:
+            count = 1
+            for invite in invites:
+                link = f'https://discord.gg/{invite.code}'
+                embed.add_field(
+                    name=f'`{count}: {invite.code}`',
+                    value=f'Uses: {invite.uses} | Max Age: {invite.max_age} | [Link]({link})',
+                    inline=False
+                )
+                count += 1
+        else:
+            embed.description = 'No invites found.'
+        await inter.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot))

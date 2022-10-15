@@ -41,7 +41,7 @@ class Moderation(commands.Cog):
         description='Get an invite link to this server.',
         dm_permission=False
     )
-    async def _invite(self, inter: disnake.CommandInter) -> None:
+    async def _mkinvite(self, inter: disnake.CommandInter) -> None:
         invite = await inter.channel.create_invite(max_age=0, max_uses=0)
         await inter.send(f'Here\'s an invite link to this server: https://discord.gg/{invite.code}')
 
@@ -50,7 +50,7 @@ class Moderation(commands.Cog):
         description='List all invites for this server.',
         dm_permission=False
     )
-    async def _listinvites(self, inter: disnake.CommandInter) -> None:
+    async def _invites(self, inter: disnake.CommandInter) -> None:
         invites = await inter.guild.invites()
         embed = disnake.Embed(title='Invites')
         if invites:

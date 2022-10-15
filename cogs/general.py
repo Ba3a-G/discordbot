@@ -92,8 +92,11 @@ class General(commands.Cog):
                 value=inter.guild.premium_subscription_count,
                 inline=True,
             )
-            .set_image(url=inter.guild.icon)
         )
+
+        if inter.guild.icon:
+            embed.set_image(url=inter.guild.icon)
+
         await inter.send(embed=embed)
 
 

@@ -1,8 +1,8 @@
 # cogs/errorhandler.py
 
-'''
+"""
 The error handler for commands.
-'''
+"""
 
 
 from typing import Any
@@ -15,18 +15,24 @@ class ErrorHandler(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_slash_command_error(self, inter: disnake.CommandInter, error: Any) -> None:
-        error = getattr(error, 'original', error)
+    async def on_slash_command_error(
+        self, inter: disnake.CommandInter, error: Any
+    ) -> None:
+        error = getattr(error, "original", error)
         await inter.send(error, ephemeral=True)
 
     @commands.Cog.listener()
-    async def on_user_command_error(self, inter: disnake.CommandInter, error: Any) -> None:
-        error = getattr(error, 'original', error)
+    async def on_user_command_error(
+        self, inter: disnake.CommandInter, error: Any
+    ) -> None:
+        error = getattr(error, "original", error)
         await inter.send(error, ephemeral=True)
 
     @commands.Cog.listener()
-    async def on_message_command_error(self, inter: disnake.CommandInter, error: Any) -> None:
-        error = getattr(error, 'original', error)
+    async def on_message_command_error(
+        self, inter: disnake.CommandInter, error: Any
+    ) -> None:
+        error = getattr(error, "original", error)
         await inter.send(error, ephemeral=True)
 
 

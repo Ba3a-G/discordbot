@@ -9,7 +9,7 @@ from keep_alive import keep_alive
 
 # Load environment variables.
 load_dotenv()
-TOKEN = os.getenv('TOKEN')
+TOKEN = os.getenv("TOKEN")
 
 
 # Setup bot and its intents.
@@ -19,17 +19,14 @@ intents.members = True
 
 class DiscordBot(commands.Bot):
     def __init__(self):
-        super().__init__(
-            command_prefix='!',
-            intents=intents
-        )
+        super().__init__(command_prefix="!", intents=intents)
 
     async def on_ready(self):
-        print(f'{self.user.name} has connected to Discord!')
+        print(f"{self.user.name} has connected to Discord!")
 
     async def on_member_join(self, member: disnake.Member):
-        print(f'{member} has joined the server.')
-        await member.send(f'Welcome, {member.mention}!')
+        print(f"{member} has joined the server.")
+        await member.send(f"Welcome, {member.mention}!")
 
 
 bot = DiscordBot()
@@ -42,6 +39,6 @@ for f in os.listdir("./cogs"):
 
 
 # Run the bot.
-if __name__ == '__main__':
+if __name__ == "__main__":
     keep_alive()
     bot.run(TOKEN)

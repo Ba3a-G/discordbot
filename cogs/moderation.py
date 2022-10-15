@@ -29,7 +29,11 @@ class Moderation(commands.Cog):
                 'Reason for banning the person.',
                 OptionType.string
             )
-        ]
+        ],
+        default_member_permissions=disnake.Permissions(
+            ban_members=True
+        ),
+        dm_permission=False
     )
     async def _ban(self, inter: disnake.CommandInter, member: disnake.Member,
                    reason: str | None = None) -> None:
@@ -37,12 +41,36 @@ class Moderation(commands.Cog):
         await inter.send(f'Banned {member.name}{member.discriminator}!')
 
     @commands.slash_command(
-        name='kick',
-        description='Kicks people.',
+        name='unban',
+        description='Unbans a member from the server.',
         options=[
             Option(
                 'member',
-                'The server member you want to kick.',
+                'The server member you\'d like to unban.',
+                OptionType.user,
+                required=True
+            )
+        ],
+        default_member_permissions=disnake.Permissions(
+            ban_members=True
+        ),
+        dm_permission=False
+    )
+    async def _unban(
+        self,
+        inter: disnake.CommandInter,
+        member: disnake.Member
+    ) -> None:
+        await inter.guild.unban(member)
+        await inter.send(f'Unbanned {member.display_name}!')
+
+    @commands.slash_command(
+        name='kick',
+        description='Kicks a member from the server.',
+        options=[
+            Option(
+                'member',
+                'The server member you\'d like to kick.',
                 OptionType.user,
                 required=True
             ),
@@ -51,10 +79,14 @@ class Moderation(commands.Cog):
                 'Reason for kicking the person.',
                 OptionType.string
             )
-        ]
+        ],
+        default_member_permissions=disnake.Permissions(
+            kick_members=True
+        ),
+        dm_permission=False
     )
     async def _kick(self, inter: disnake.CommandInter, member: disnake.Member,
-                    reason: str | None = None) -> None:
+                    reason: str = 'No reason provided.') -> None:
         await inter.guild.kick(member, reason=reason)
         await inter.send(f'Kicked {member.name}{member.discriminator}!')
 

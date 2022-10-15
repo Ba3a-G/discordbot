@@ -37,7 +37,7 @@ class Moderation(commands.Cog):
         await inter.send(f'Banned {member.name}{member.discriminator}!')
 
     @commands.slash_command(
-        name='invite',
+        name='mkinvite',
         description='Get an invite link to this server.',
         dm_permission=False
     )
@@ -46,7 +46,7 @@ class Moderation(commands.Cog):
         await inter.send(f'Here\'s an invite link to this server: https://discord.gg/{invite.code}')
 
     @commands.slash_command(
-        name='listinvites',
+        name='invites',
         description='List all invites for this server.',
         dm_permission=False
     )

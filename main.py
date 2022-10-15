@@ -5,6 +5,7 @@ import os
 import disnake
 from disnake.ext import commands
 from dotenv import load_dotenv
+from keep_alive import keep_alive
 
 # Load environment variables.
 load_dotenv()
@@ -12,13 +13,13 @@ TOKEN = os.getenv('TOKEN')
 
 
 # Setup bot and its intents.
-intents = disnake.Intents.default()
+intents = disnake.Intents.all()
 intents.members = True
 
 
 class DiscordBot(commands.Bot):
     def __init__(self):
-        super.__init__(
+        super().__init__(
             command_prefix='!',
             intents=intents
         )
@@ -42,4 +43,5 @@ for f in os.listdir("./cogs"):
 
 # Run the bot.
 if __name__ == '__main__':
+    keep_alive()
     bot.run(TOKEN)

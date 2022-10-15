@@ -36,6 +36,28 @@ class Moderation(commands.Cog):
         await inter.guild.ban(member, reason=reason)
         await inter.send(f'Banned {member.name}{member.discriminator}!')
 
+    @commands.slash_command(
+        name='kick',
+        description='Kicks people.',
+        options=[
+            Option(
+                'member',
+                'The server member you want to kick.',
+                OptionType.user,
+                required=True
+            ),
+            Option(
+                'reason',
+                'Reason for kicking the person.',
+                OptionType.string
+            )
+        ]
+    )
+    async def _kick(self, inter: disnake.CommandInter, member: disnake.Member,
+                    reason: str | None = None) -> None:
+        await inter.guild.kick(member, reason=reason)
+        await inter.send(f'Kicked {member.name}{member.discriminator}!')
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot))

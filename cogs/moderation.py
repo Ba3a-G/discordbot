@@ -41,14 +41,6 @@ class Moderation(commands.Cog):
         await inter.send(f'Banned {member.name}{member.discriminator}!')
 
     @commands.slash_command(
-<<<<<<< Updated upstream
-        name='kick',
-        description='Kicks people.',
-        options=[
-            Option(
-                'member',
-                'The server member you want to kick.',
-=======
         name='unban',
         description='Unbans a member from the server.',
         options=[
@@ -79,7 +71,6 @@ class Moderation(commands.Cog):
             Option(
                 'member',
                 'The server member you\'d like to kick.',
->>>>>>> Stashed changes
                 OptionType.user,
                 required=True
             ),
@@ -88,12 +79,6 @@ class Moderation(commands.Cog):
                 'Reason for kicking the person.',
                 OptionType.string
             )
-<<<<<<< Updated upstream
-        ]
-    )
-    async def _kick(self, inter: disnake.CommandInter, member: disnake.Member,
-                    reason: str | None = None) -> None:
-=======
         ],
         default_member_permissions=disnake.Permissions(
             kick_members=True
@@ -106,7 +91,6 @@ class Moderation(commands.Cog):
         member: disnake.Member,
         reason: str = 'No reason provided.'
     ) -> None:
->>>>>>> Stashed changes
         await inter.guild.kick(member, reason=reason)
         await inter.send(f'Kicked {member.name}{member.discriminator}!')
 

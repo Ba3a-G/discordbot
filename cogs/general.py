@@ -99,6 +99,16 @@ class General(commands.Cog):
 
         await inter.send(embed=embed)
 
+    @commands.slash_command(
+        name="ping", description="Get stats about the bot.", dm_permission=True
+    )
+    async def _ping(self, inter: disnake.CommandInter):
+        embed = disnake.Embed(title="Pong!").add_field(
+            name="Latency", value=f"{round(inter.bot.latency * 1000)}ms", inline=True
+        )
+
+        await inter.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(General(bot))

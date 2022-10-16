@@ -1,8 +1,8 @@
 # cogs/moderation.py
 
-"""
+'''
 Moderation cog for commands.
-"""
+'''
 
 
 import disnake
@@ -24,12 +24,10 @@ class Moderation(commands.Cog):
                 OptionType.user,
                 required=True,
             ),
-            Option(
-                "reason",
-                "Reason for banning the person.",
-                OptionType.string
-            ),
+            Option("reason", "Reason for banning the person.", OptionType.string),
         ],
+        default_member_permissions=disnake.Permissions(ban_members=True),
+        dm_permission=False,
     )
     async def _ban(
         self,
@@ -41,37 +39,70 @@ class Moderation(commands.Cog):
         await inter.send(f"Banned {member.name}{member.discriminator}!")
 
     @commands.slash_command(
-        name="mkinvite",
-        description="Get an invite link to this server.",
+        name="sofban",
+        description="Softans people to wipe their messages.",
+        options=[
+            Option(
+                "member",
+                "The server member you want to ban.",
+                OptionType.user,
+                required=True,
+            ),
+            Option("reason", "Reason for softbanning the person.", OptionType.string),
+        ],
+        default_member_permissions=disnake.Permissions(ban_members=True),
         dm_permission=False,
     )
-    async def _mkinvite(self, inter: disnake.CommandInter) -> None:
-        invite = await inter.channel.create_invite(max_age=0, max_uses=0)
-        await inter.send(
-            f"Here's an invite link to this server: https://discord.gg/{invite.code}"
-        )
+    async def _softban(
+        self,
+        inter: disnake.CommandInter,
+        member: disnake.Member,
+        reason: str | None = None,
+    ) -> None:
+        await inter.guild.ban(member, reason=reason, delete_message_days=7)
+        await inter.send(f"Softbanned {member.name}{member.discriminator}!")
 
     @commands.slash_command(
-        name="invites",
-        description="List all invites for this server.",
+        name="unban",
+        description="Unbans a member from the server.",
+        options=[
+            Option(
+                "member",
+                "The server member you'd like to unban.",
+                OptionType.user,
+                required=True,
+            )
+        ],
+        default_member_permissions=disnake.Permissions(ban_members=True),
         dm_permission=False,
     )
-    async def _invites(self, inter: disnake.CommandInter) -> None:
-        invites = await inter.guild.invites()
-        embed = disnake.Embed(title="Invites")
-        if invites:
-            count = 1
-            for invite in invites:
-                link = f"https://discord.gg/{invite.code}"
-                embed.add_field(
-                    name=f"`{count}: {invite.code}`",
-                    value=f"Uses: {invite.uses} | Max Age: {invite.max_age} | [Link]({link})",
-                    inline=False,
-                )
-                count += 1
-        else:
-            embed.description = "No invites found."
-        await inter.send(embed=embed)
+    async def _unban(self, inter: disnake.CommandInter, member: disnake.Member) -> None:
+        await inter.guild.unban(member)
+        await inter.send(f"Unbanned {member.display_name}!")
+
+    @commands.slash_command(
+        name="kick",
+        description="Kicks a member from the server.",
+        options=[
+            Option(
+                "member",
+                "The server member you'd like to kick.",
+                OptionType.user,
+                required=True,
+            ),
+            Option("reason", "Reason for kicking the person.", OptionType.string),
+        ],
+        default_member_permissions=disnake.Permissions(kick_members=True),
+        dm_permission=False,
+    )
+    async def _kick(
+        self,
+        inter: disnake.CommandInter,
+        member: disnake.Member,
+        reason: str = "No reason provided.",
+    ) -> None:
+        await inter.guild.kick(member, reason=reason)
+        await inter.send(f"Kicked {member.name}{member.discriminator}!")
 
 
 def setup(bot):

@@ -58,7 +58,6 @@ class YTDLSource(disnake.PCMVolumeTransformer):
         )
 
         if "entries" in data:
-            # take first item from a playlist
             data = data["entries"][0]
 
         filename = data["url"] if stream else ytdl.prepare_filename(data)

@@ -11,3 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # The enviroment variable ensures that the python output is set straight
 # to the terminal with out buffering it first
 ENV PYTHONUNBUFFERED 1
+
+# Run the bot.
+CMD [ "python", "main.py" ]

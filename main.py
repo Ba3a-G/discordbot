@@ -5,6 +5,7 @@ import os
 import disnake
 from disnake.ext import commands
 from dotenv import load_dotenv
+
 from keep_alive import keep_alive
 
 # Load environment variables.

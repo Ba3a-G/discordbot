@@ -170,6 +170,19 @@ class Moderation(commands.Cog):
 
         await inter.send(embed=embed)
 
+    @commands.slash_command(
+        name='unpinall',
+        description='Unpins all pinned messages in current channel.',
+        dm_permission=False
+    )
+    async def _unpinall(self, inter: disnake.CommandInter) -> None:
+        message: disnake.Message
+
+        for message in enumerate(inter.channel.pins):
+            await message.unpin()
+
+        await inter.send(f'Unpinned {len(inter.channel.pins)} messages.')
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot))

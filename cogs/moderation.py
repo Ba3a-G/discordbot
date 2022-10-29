@@ -153,27 +153,27 @@ class Moderation(commands.Cog):
         await inter.send(f"Pinned message: {message.jump_url}")
 
     @commands.slash_command(
-        name='pins',
-        description='Shows the pinned messages in current channel.',
-        dm_permission=False
+        name="pins",
+        description="Shows the pinned messages in current channel.",
+        dm_permission=False,
     )
     async def _pins(self, inter: disnake.CommandInter) -> None:
-        embed = disnake.Embed(title='Pinned Messages')
+        embed = disnake.Embed(title="Pinned Messages")
         message: disnake.Message
 
         for count, message in enumerate(inter.channel.pins):
             embed.add_field(
-                name=f'#{count} - {message.content[:15]}...',
-                value=f'[Jump to message]({message.jump_url})',
-                inline=False
+                name=f"#{count} - {message.content[:15]}...",
+                value=f"[Jump to message]({message.jump_url})",
+                inline=False,
             )
 
         await inter.send(embed=embed)
 
     @commands.slash_command(
-        name='unpinall',
-        description='Unpins all pinned messages in current channel.',
-        dm_permission=False
+        name="unpinall",
+        description="Unpins all pinned messages in current channel.",
+        dm_permission=False,
     )
     async def _unpinall(self, inter: disnake.CommandInter) -> None:
         message: disnake.Message
@@ -181,7 +181,7 @@ class Moderation(commands.Cog):
         for message in enumerate(inter.channel.pins):
             await message.unpin()
 
-        await inter.send(f'Unpinned {len(inter.channel.pins)} messages.')
+        await inter.send(f"Unpinned {len(inter.channel.pins)} messages.")
 
 
 def setup(bot):

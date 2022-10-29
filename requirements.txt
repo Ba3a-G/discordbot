@@ -1,3 +1,4 @@
-python-dotenv
 disnake
 flask
+pre-commit
+python-dotenv

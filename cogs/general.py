@@ -111,12 +111,12 @@ class General(commands.Cog):
 
     # show member count in VC
     @commands.slash_command(
-        name='membercount',
-        description='Shows the current member count in the server.',
+        name="membercount",
+        description="Shows the current member count in the server.",
         options=[
             Option(
-                'sticky',
-                'Set True to show member count in side bar.',
+                "sticky",
+                "Set True to show member count in side bar.",
                 OptionType.boolean,
             )
         ],
@@ -125,30 +125,29 @@ class General(commands.Cog):
     async def _membercount(
         self, inter: disnake.CommandInteraction, sticky: bool = False
     ) -> None:
-        embed = (
-            disnake.Embed(
-                title='Member Count',
-                description=f'There are {inter.guild.member_count} members in this server.',
-            )
+        embed = disnake.Embed(
+            title="Member Count",
+            description=f"There are {inter.guild.member_count} members in this server.",
         )
 
         for channel in inter.guild.channels:
-            if channel.name.startswith('Members:'):
+            if channel.name.startswith("Members:"):
                 await channel.delete()
 
         if sticky:
             await inter.guild.create_voice_channel(
-                name=f'Members: {inter.guild.member_count}',
+                name=f"Members: {inter.guild.member_count}",
                 position=0,
                 overwrites={
-                    inter.guild.default_role: disnake.PermissionOverwrite(connect=False),
-                    inter.guild.me: disnake.PermissionOverwrite(
-                        manage_channels=True,
+                    inter.guild.default_role: disnake.PermissionOverwrite(
                         connect=False
                     ),
-                }
+                    inter.guild.me: disnake.PermissionOverwrite(
+                        manage_channels=True, connect=False
+                    ),
+                },
             )
-            embed.set_footer(text='Sticky mode enabled.')
+            embed.set_footer(text="Sticky mode enabled.")
             await inter.send(embed=embed)
 
         else:

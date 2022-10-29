@@ -29,8 +29,8 @@ class DiscordBot(commands.Bot):
         await member.send(f"Welcome, {member.mention}!")
         guild = member.guild
         for channel in guild.channels:
-            if channel.name.startswith('Members:'):
-                await channel.edit(name=f'Members: {guild.member_count}')
+            if channel.name.startswith("Members:"):
+                await channel.edit(name=f"Members: {guild.member_count}")
                 break
 
 

@@ -6,6 +6,7 @@ The error handler for commands.
 
 
 from typing import Any
+
 import disnake
 from disnake.ext import commands
 

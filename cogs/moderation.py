@@ -137,6 +137,21 @@ class Moderation(commands.Cog):
             embed.description = "No invites found."
         await inter.send(embed=embed)
 
+    @commands.slash_command(
+        name="pin",
+        description="Pins a message",
+        options=[
+            Option("id", "The ID of the message.", OptionType.integer, required=True)
+        ],
+        default_member_permissions=disnake.Permissions(manage_messages=True),
+        dm_permission=False,
+    )
+    async def _pin(self, inter: disnake.CommandInter, id: int) -> None:
+        message = self.bot.get_message(id)
+
+        await message.pin()
+        await inter.send(f"Pinned message: {message.jump_url}")
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot))

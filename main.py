@@ -3,19 +3,26 @@
 import os
 
 import disnake
+from decouple import UndefinedValueError, config
 from disnake.ext import commands
-from dotenv import load_dotenv
 
 from keep_alive import keep_alive
-
-# Load environment variables.
-load_dotenv()
-TOKEN = os.getenv("TOKEN")
-
 
 # Setup bot and its intents.
 intents = disnake.Intents.all()
 intents.members = True
+
+
+class Secrets:
+    def __init__(self) -> None:
+        try:
+            self.token = config("TOKEN", cast=str)
+
+        except UndefinedValueError:
+            print("Environment keys missing!")
+
+        else:
+            pass
 
 
 class DiscordBot(commands.Bot):
@@ -35,6 +42,7 @@ class DiscordBot(commands.Bot):
                 break
 
 
+secrets = Secrets()
 bot = DiscordBot()
 
 
@@ -47,4 +55,4 @@ for f in os.listdir("./cogs"):
 # Run the bot.
 if __name__ == "__main__":
     keep_alive()
-    bot.run(TOKEN)
+    bot.run(secrets.token)

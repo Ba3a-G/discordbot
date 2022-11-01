@@ -183,6 +183,28 @@ class Moderation(commands.Cog):
 
         await inter.send(f"Unpinned {len(inter.channel.pins)} messages.")
 
+    # slowmode
+    @commands.slash_command(
+        name='slowmode',
+        description='Sets slowmode for the current channel.',
+        options=[
+            Option(
+                'seconds',
+                'The amount of seconds to set the slowmode to. Set 0 to disable.',
+                OptionType.integer,
+                min_value=0,
+                max_value=21600,
+                required=True,
+            )
+        ],
+        dm_permission=False,
+    )
+    @commands.has_permissions(manage_channels=True)
+    async def _slowmode(self, inter: disnake.CommandInter, seconds: int) -> None:
+        await inter.channel.edit(slowmode_delay=seconds)
+        message = f'Slowmode set to {seconds} seconds.' if seconds else 'Slowmode disabled.'
+        await inter.send(message)
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot))
